@@ -4,6 +4,4 @@ git clone https://github.com/mercuryworkshop/anuraos
 rm anuraos/codespace-basic-setup.sh
 mv $OLDDIR/codespace-basic-setup.sh anuraos
 cd anuraos
-cat << EOF >> ~/.profile
-cd $PWD
-EOF
+echo "cd $PWD" >> ~/.bashrc
