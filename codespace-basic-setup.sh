@@ -1,5 +1,6 @@
 #!/bin/bash
 #fix the uuidgen command not found error
+DEBIAN_FRONTEND=noninteractive
 sudo apt update
 sudo apt upgrade -y
 sudo apt install -y uuid-runtime gcc-multilib jq
