@@ -1,9 +1,8 @@
 #!/bin/bash
 #fix the uuidgen command not found error
-export DEBIAN_FRONTEND=noninteractive
 sudo apt update
-sudo apt upgrade -y
-sudo apt install -y uuid-runtime gcc-multilib jq
+sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y uuid-runtime gcc-multilib jq
 
 #install
 git submodule update --init
