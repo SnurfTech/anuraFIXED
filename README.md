@@ -1,2 +1,4 @@
 # anuraFIXED
-A script for GitHub Codespaces that sets up Anura OS for your device without using the normal GitHub Codespaces script provided by MercuryWorkshop which currently doesn't work.
+A fixed version of the GitHub Codespaces setup script for Anura OS by MercuryWorkshop.
+
+To set up everything, make a GitHub Codespace for this repository and type ```source start.sh```. That will set up everything you need and you can just continue building Anura OS normally with ```source codespace-basic-setup.sh``` and etc.
