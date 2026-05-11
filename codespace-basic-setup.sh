@@ -6,7 +6,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y uuid-runtime gcc-multilib
 
 #install
 git submodule update --init
-sed -i 's|cloudflare-dns.com|dns.google|' v86/src/browser/fake_network.js
+sed -i 's|cloudflare-dns.com|dns.adguard-dns.com|' v86/src/browser/fake_network.js
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 source "$HOME/.cargo/env" # to import rustup in current shell
 rustup install nightly-2024-10-01
