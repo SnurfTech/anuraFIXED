@@ -1,16 +1,4 @@
 #!/bin/bash
-
-for i in "$@"; do
-  case "$i" in
-    -x)
-      export EXTREME=1
-      ;;
-    -a)
-      export AUTO=1
-      ;;
-  esac
-done
-
 #fix the uuidgen command not found error
 sudo apt update
 sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
