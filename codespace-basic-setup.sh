@@ -51,5 +51,10 @@ sed -i 's|/lib/api/Filesystem.js|/lib/api/filesystem/Filesystem.js|g' public/anu
 sed -i 's|/lib/api/LocalFS.js|/lib/api/filesystem/LocalFS.js|g' public/anura-sw.js
 
 if [[ $AUTO == 1 ]]; then
-  echo "make server" >> ~/.bashrc
+  cat << "EOF" >> ~/.bashrc
+[[ $(ps a | grep "make server" | grep -v "grep" | tr -s ' ' | sed 's|^ ||' | cut -d ' ' -f1) ]] && kill $(ps a | grep "make server" | grep -v "grep" | tr -s ' ' | sed 's|^ ||' | cut -d ' ' -f1)
+make server &
+wait 3
+gh codespace ports visibility "8000:public" --codespace "$CODESPACE_NAME"
+EOF
 fi
