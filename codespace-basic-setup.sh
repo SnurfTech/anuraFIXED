@@ -53,8 +53,11 @@ printf "1\n0\n" | make rootfs
 make server &
 
 if [[ $EXTREME == 1 ]]; then
-  wait 3
-  gh codespace ports visibility "8000:public" --codespace "$CODESPACE_NAME"
+  until output=$(gh codespace ports visibility "8000:public" --codespace "$CODESPACE_NAME" 2>&1); do
+    sleep 1
+  done
+
+  printf '%s\n' "$output"
 fi
 
 if [[ $AUTO == 1 ]]; then
@@ -64,8 +67,11 @@ make server &
 EOF
   if [[ $EXTREME == 1 ]]; then
     cat << "EOF" >> ~/.bashrc
-wait 3
-gh codespace ports visibility "8000:public" --codespace "$CODESPACE_NAME"
+until output=$(gh codespace ports visibility "8000:public" --codespace "$CODESPACE_NAME" 2>&1); do
+  sleep 1
+done
+
+printf '%s\n' "$output"
 EOF
   fi
 fi
