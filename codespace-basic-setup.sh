@@ -49,12 +49,18 @@ rustup target add i686-unknown-linux-gnu --toolchain nightly
 make all
 sed -i 's|/lib/api/Filesystem.js|/lib/api/filesystem/Filesystem.js|g' public/anura-sw.js
 sed -i 's|/lib/api/LocalFS.js|/lib/api/filesystem/LocalFS.js|g' public/anura-sw.js
+printf "1\n0\n" | make rootfs
+make server &
 
 if [[ $AUTO == 1 ]]; then
   cat << "EOF" >> ~/.bashrc
 [[ $(ps a | grep "make server" | grep -v "grep" | tr -s ' ' | sed 's|^ ||' | cut -d ' ' -f1) ]] && kill $(ps a | grep "make server" | grep -v "grep" | tr -s ' ' | sed 's|^ ||' | cut -d ' ' -f1)
 make server &
+EOF
+  if [[ $EXTREME == 1 ]]; then
+    cat << "EOF" >> ~/.bashrc
 wait 3
 gh codespace ports visibility "8000:public" --codespace "$CODESPACE_NAME"
 EOF
+  fi
 fi
