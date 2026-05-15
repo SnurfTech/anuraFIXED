@@ -52,6 +52,11 @@ sed -i 's|/lib/api/LocalFS.js|/lib/api/filesystem/LocalFS.js|g' public/anura-sw.
 printf "1\n0\n" | make rootfs
 make server &
 
+if [[ $EXTREME == 1 ]]; then
+  wait 3
+  gh codespace ports visibility "8000:public" --codespace "$CODESPACE_NAME"
+fi
+
 if [[ $AUTO == 1 ]]; then
   cat << "EOF" >> ~/.bashrc
 [[ $(ps a | grep "make server" | grep -v "grep" | tr -s ' ' | sed 's|^ ||' | cut -d ' ' -f1) ]] && kill $(ps a | grep "make server" | grep -v "grep" | tr -s ' ' | sed 's|^ ||' | cut -d ' ' -f1)
